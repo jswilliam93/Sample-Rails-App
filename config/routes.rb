@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   get 'page_controller/home'
 
-  get 'page_controller/about'
+  get 'about' => 'page_controller#about'
 
-  get 'page_controller/help'
+  get 'help' => 'page_controller#help'
+
+  get 'contact' => 'page_controller#contact'
+
+  get 'signup' => 'users#new'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
