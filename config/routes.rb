@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'page_controller/home'
 
   get 'about' => 'page_controller#about'
@@ -8,6 +10,12 @@ Rails.application.routes.draw do
   get 'contact' => 'page_controller#contact'
 
   get 'signup' => 'users#new'
+
+  get 'login' => 'sessions#new'
+
+  post 'login' => 'sessions#create'
+
+  delete 'logout' => 'sessions#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
