@@ -26,16 +26,22 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  def authenticated?(remember_token)
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
     if remember_digest.nil?
       false
     else
-      BCrypt::Password.new(remember_digest).is_password?(remember_token)
+      BCrypt::Password.new(digest).is_password?(token)
     end
   end
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def activate
+    self.update_attribute(:acctivated, true)
+    self.update_attribute(:acctivated_at, Time.zone.now)
   end
 
   private
